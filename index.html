@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AetherAlpha | AI Trading Platform for ThinkOrSwim</title>
+    <meta
+      name="description"
+      content="AetherAlpha is an AI-native trading workspace for ThinkOrSwim data. Screen opportunities, monitor risk, and execute with confidence."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top">AetherAlpha</a>
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+      <nav id="site-nav">
+        <a href="#platform">Platform</a>
+        <a href="#market-data">Market Data</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="ghost-btn">Request Demo</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="platform">
+        <div class="hero-copy">
+          <p class="eyebrow">AI EXECUTION OS FOR ACTIVE TRADERS</p>
+          <h1>
+            Turn ThinkOrSwim market streams into
+            <span>real-time trading decisions</span>
+          </h1>
+          <p class="hero-description">
+            AetherAlpha combines signal discovery, risk scoring, and execution workflows into a
+            single institutional-grade interface built for options and equity traders.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-btn" href="#waitlist">Start Free Trial</a>
+            <a class="ghost-btn" href="#market-data">Explore Live Feed</a>
+          </div>
+
+          <ul class="hero-metrics">
+            <li><strong>98.6%</strong><span>Signal uptime</span></li>
+            <li><strong>&lt;120ms</strong><span>Model refresh cadence</span></li>
+            <li><strong>24/7</strong><span>Portfolio risk monitoring</span></li>
+          </ul>
+        </div>
+
+        <aside class="panel" id="market-data">
+          <div class="panel-head">
+            <h2>ThinkOrSwim Watchlist</h2>
+            <span class="status-dot">Live</span>
+          </div>
+          <p class="muted">Filter symbols, track changes, and pin a watchlist for your desk.</p>
+
+          <div class="controls">
+            <input id="symbol-filter" type="text" placeholder="Filter by symbol or instrument" />
+            <div class="inline-controls">
+              <input id="watch-symbol" type="text" maxlength="8" placeholder="Add symbol" />
+              <button id="add-watch-btn" class="ghost-btn">Add</button>
+            </div>
+          </div>
+
+          <div id="tos-feed" class="feed-grid" aria-live="polite"></div>
+
+          <div class="watchlist-box">
+            <h3>Saved Watchlist</h3>
+            <div id="watchlist-tags" class="watchlist-tags"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="logo-row" aria-label="Trusted by trading teams">
+        <span>Volatility Labs</span>
+        <span>Northshore Capital</span>
+        <span>Apex Options Desk</span>
+        <span>MacroField Partners</span>
+      </section>
+
+      <section class="feature-section">
+        <article>
+          <h3>Signal Studio</h3>
+          <p>Build strategy prompts from options flow, IV spikes, volume anomalies, and trend regimes.</p>
+        </article>
+        <article>
+          <h3>Execution Guardrails</h3>
+          <p>Automate entries/exits using position limits, slippage thresholds, and confidence scoring.</p>
+        </article>
+        <article>
+          <h3>Risk Lens</h3>
+          <p>Stress-test positions across volatility shocks, earnings windows, and macro catalysts.</p>
+        </article>
+      </section>
+
+      <section id="pricing" class="pricing-section panel">
+        <div class="panel-head">
+          <h2>Simple pricing for discretionary and systematic teams</h2>
+          <div class="billing-toggle" role="tablist" aria-label="Billing cycle">
+            <button class="toggle-btn active" data-billing="monthly">Monthly</button>
+            <button class="toggle-btn" data-billing="yearly">Yearly</button>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card" data-monthly="79" data-yearly="63">
+            <h3>Starter</h3>
+            <p class="muted">For individual traders validating AI-assisted workflows.</p>
+            <p class="price"><span class="price-value">$79</span><small>/mo</small></p>
+            <ul>
+              <li>1 account connection</li>
+              <li>Live watchlists + alerts</li>
+              <li>Daily risk digest</li>
+            </ul>
+          </article>
+          <article class="price-card featured" data-monthly="199" data-yearly="159">
+            <p class="badge">Most Popular</p>
+            <h3>Pro Desk</h3>
+            <p class="muted">For active options traders and small prop teams.</p>
+            <p class="price"><span class="price-value">$199</span><small>/mo</small></p>
+            <ul>
+              <li>5 account connections</li>
+              <li>Execution guardrails</li>
+              <li>Model-backed signal ranking</li>
+            </ul>
+          </article>
+          <article class="price-card" data-monthly="499" data-yearly="399">
+            <h3>Enterprise</h3>
+            <p class="muted">For institutions requiring controls, scale, and support.</p>
+            <p class="price"><span class="price-value">$499</span><small>/mo</small></p>
+            <ul>
+              <li>Unlimited seats</li>
+              <li>Custom risk policies</li>
+              <li>Dedicated onboarding</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="faq" class="panel faq-section">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>How does ThinkOrSwim data integrate?</summary>
+          <p>
+            This demo page uses representative sample data. In production, you would connect your
+            authorized data pipeline and stream normalized quotes into the same components.
+          </p>
+        </details>
+        <details>
+          <summary>Can I use this for options and equities?</summary>
+          <p>Yes. AetherAlpha is designed for multi-asset workflows with configurable rule sets.</p>
+        </details>
+        <details>
+          <summary>Is there a trial environment?</summary>
+          <p>
+            Yes, every plan starts with a guided setup and sandbox workspace so teams can validate
+            strategies before live deployment.
+          </p>
+        </details>
+      </section>
+
+      <section id="waitlist" class="panel waitlist-section">
+        <h2>Get early access</h2>
+        <p class="muted">Join the release queue and we’ll send setup instructions within 24 hours.</p>
+        <form id="waitlist-form" novalidate>
+          <input id="name" type="text" placeholder="Full name" required />
+          <input id="email" type="email" placeholder="Work email" required />
+          <button type="submit" class="primary-btn">Join Waitlist</button>
+        </form>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> AetherAlpha. Built for modern AI-driven trading workflows.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
