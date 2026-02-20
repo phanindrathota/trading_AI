@@ -1,0 +1,19 @@
+# Thinkorswim Custom Quote / Study
+# Dedicated VEX (Vega Exposure) field for option chains
+
+input contractMultiplier = 100;   # Equity options are usually 100
+input putExposureNegative = yes;  # If yes, puts are assigned negative sign
+
+def isPut = GetOptionType() == OptionType.PUT;
+def sideSign = if putExposureNegative and isPut then -1 else 1;
+
+def oi = OpenInterest();
+def v = Vega();
+
+# VEX (vega exposure):
+# VEX ~= sign * Vega * OI * Multiplier
+# (per 1 volatility point move, depending on your broker's vega convention)
+def VEX = sideSign * v * oi * contractMultiplier;
+
+plot value = VEX;
+value.AssignValueColor(if value >= 0 then Color.GREEN else Color.RED);

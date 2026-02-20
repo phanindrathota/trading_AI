@@ -1,0 +1,24 @@
+# Thinkorswim Custom Quote / Study
+# Dedicated GEX (Gamma Exposure) field for option chains
+
+input underlyingPriceOverride = 0.0;  # Set > 0 to force a price, else uses current underlying price
+input contractMultiplier = 100;       # Equity options are usually 100
+input putExposureNegative = yes;      # If yes, puts are assigned negative sign
+input gammaScalePercentMove = 1.0;    # 1.0 = exposure for a 1% move in underlying
+
+def S = if underlyingPriceOverride > 0
+        then underlyingPriceOverride
+        else close(GetUnderlyingSymbol());
+
+def isPut = GetOptionType() == OptionType.PUT;
+def sideSign = if putExposureNegative and isPut then -1 else 1;
+
+def oi = OpenInterest();
+def g = Gamma();
+
+# GEX approximation for a gamma exposure on a % move:
+# GEX ~= sign * Gamma * OI * Multiplier * S^2 * (pctMove/100)
+def GEX = sideSign * g * oi * contractMultiplier * S * S * (gammaScalePercentMove / 100);
+
+plot value = GEX;
+value.AssignValueColor(if value >= 0 then Color.GREEN else Color.RED);
